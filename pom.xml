@@ -91,9 +91,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
                 <configuration>
-                    <suiteXmlFiles>
+                    <!--<suiteXmlFiles>
                         <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-                    </suiteXmlFiles>
+                    </suiteXmlFiles> -->
                     <systemPropertyVariables>
                         <browser>${browser}</browser>
                         <env>${env}</env>

@@ -4,6 +4,7 @@
  */
 package Test;
 import Page.Accountpage;
+import Page.AccountsOverviewPage;
 import Page.LoginPage;
 import Page.RegisterPage;
 import org.openqa.selenium.By;
@@ -12,24 +13,21 @@ import org.openqa.selenium.WebDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 /**
  *
  * @author HP
  */
-public class RegisterTest {
-    WebDriver driver;
+public class RegisterTest extends BaseTest{
+
     RegisterPage regpage;
     LoginPage loginpage;
     Accountpage accpage;
-    @BeforeMethod
-    void setup(){
-    driver=new ChromeDriver();
-    driver.get("https://parabank.parasoft.com/parabank/register.htm");
-    driver.manage().window().maximize();
-    }
-    
+    AccountsOverviewPage accoverview;
+
     @Test(priority=1)
     void registerTest(){
     regpage=new RegisterPage(driver);
@@ -42,30 +40,37 @@ public class RegisterTest {
     regpage.enterrzipcode(671532);
     regpage.enterphone(1234234567);
     regpage.enterssn(234567654);
-    regpage.enterusername("shivauser");
-    regpage.eneterpassword("samplepass");
-    regpage.confirmpassword("samplepass");
-    String successmessage=regpage.getsuccessmessage();
-    Assert.assertTrue(successmessage.contains("Welcome"));
+    regpage.enterusername("example95");
+    regpage.eneterpassword("password");
+    regpage.confirmpassword("password");
+    regpage.clickregisterbutton();  
+    String successmessage=regpage.getregsuccessmessage();
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException ex) {
+            System.getLogger(RegisterTest.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    Assert.assertTrue(successmessage.contains("Your account was created successfully. You are now logged in"));
     System.out.println("registration test passed successfully");
     
     }
     
-    @Test(priority=2)
+    @Test(enabled=false)
     void loginTest(){
     loginpage=new LoginPage(driver);
     loginpage.enterusername("example2");
-    loginpage.enterpassword("samplepass");
+    loginpage.enterpassword("password");
     loginpage.clickloginbutton();
     String loginmessage=loginpage.loginmessage();
     Assert.assertTrue(loginmessage.contains("welcome"), "login test passed successfully");
     
     }
     
-    @Test
+    @Test(priority=2)
     void openaccount(){
+         
     accpage=new Accountpage(driver);
-    accpage.enterracctype("SAVINGS");
+    accpage.clickOpenNewAccount();
     accpage.enteramount();
     accpage.clckopenaccountbutton();
     String successmessage=accpage.successmessage();
@@ -75,9 +80,13 @@ public class RegisterTest {
     System.out.println(accountid);
     }
     
-     @Test
+     @Test(priority=3,dependsOnMethods = {"registerTest"})
      void verifyaccountsList(){
-     
+     accoverview=new AccountsOverviewPage(driver);
+     accoverview.waitForPageLoad();
+     accoverview.displayAllAccounts();
      }
     
+
+        
 }

@@ -1,0 +1,8 @@
+Page\Accountpage.class
+Page\RegisterPage.class
+Page\AccountsOverviewPage$AccountDetail.class
+Factory\DriverFactory.class
+Page\LoginPage.class
+Test\RegisterTest.class
+Page\AccountsOverviewPage.class
+Test\BaseTest.class

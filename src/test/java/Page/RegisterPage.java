@@ -9,13 +9,16 @@ package Page;
  * @author HP
  */
 
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 public class RegisterPage {
     WebDriver driver;
-    
+    private WebDriverWait wait;
     private By registerbuttonhome=By.xpath("//a[normalize-space()='Register']");
     private By firstname=By.xpath("//input[@id='customer.firstName']");
     private By lastname=By.id("customer.lastName");
@@ -28,12 +31,13 @@ public class RegisterPage {
     private By username=By.id("customer.username");
     private By password=By.id("customer.password");
     private By confirmpassword=By.id("repeatedPassword");
-    private By registerbutton=By.id("//input[@value='Register']");
+    private By registerbutton=By.xpath("//input[@value='Register']");
+    private By registersuccessmsg=By.cssSelector("div[id='rightPanel'] p");
     private By successmessage=By.xpath("//p[contains(text(),'Your account was created successfully. You are now')]");
     
      public RegisterPage(WebDriver driver) {
         this.driver = driver;
-      
+      this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
      
     public void clickregisterbuttonhome(){
@@ -44,7 +48,7 @@ public class RegisterPage {
     driver.findElement(this.firstname).sendKeys(firstname);
     }
      public void enterlastname(String lastname){
-    driver.findElement(this.firstname).sendKeys(lastname);
+    driver.findElement(this.lastname).sendKeys(lastname);
     }
     
     public void enteraddress(String address){
@@ -78,8 +82,15 @@ public class RegisterPage {
     public void clickregisterbutton(){
     driver.findElement(registerbutton).click();
     }
+   public String getregsuccessmessage(){
+        String message = wait.until(ExpectedConditions.visibilityOfElementLocated(registersuccessmsg)).getText();
+System.out.println("registartion Success Message: " + message);
+    return wait.until(ExpectedConditions.visibilityOfElementLocated(registersuccessmsg)).getText();
+    }
     public String getsuccessmessage(){
-     return driver.findElement(successmessage).getText();
+        String message = wait.until(ExpectedConditions.visibilityOfElementLocated(successmessage)).getText();
+System.out.println("[INFO] Success Message: " + message);
+    return wait.until(ExpectedConditions.visibilityOfElementLocated(successmessage)).getText();
     }
     }
     
