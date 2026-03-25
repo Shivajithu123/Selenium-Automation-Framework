@@ -12,23 +12,31 @@ import java.time.Duration;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 public class Accountpage {
     WebDriver driver;
-    private WebDriverWait wait;
+    WebDriverWait wait;
+@FindBy(xpath = "//a[contains(text(),'Open New Account')]")
+WebElement openacc;
+
+@FindBy(xpath = "//input[@value='Open New Account']")
+WebElement openaccountbtn;
+
+@FindBy(xpath = "//h1[normalize-space()='Account Opened!']")
+WebElement sucessmessage;
+
+@FindBy(id = "newAccountId")
+WebElement newaccountid;
     public Accountpage(WebDriver driver){
     this.driver=driver;
-    this.wait   = new WebDriverWait(driver, Duration.ofSeconds(15));
-    
+    this.wait   = new WebDriverWait(this.driver, Duration.ofSeconds(15));
+    PageFactory.initElements(this.driver, this);
     }
-  private By openacc=By.xpath("//a[contains(text(),'Open New Account')]");
-   // private By acctype=By.id("type");
-   // private By depositamount=By.id("fromAccountId");
-  private By openaccountbtn=By.xpath("//input[@value='Open New Account']");
-  private By sucessmessage=By.xpath("//h1[normalize-space()='Account Opened!']");
-  private By newaccountid=By.id("newAccountId");
+
 
   public void clickOpenNewAccount() {
     wait.until(ExpectedConditions.elementToBeClickable(
@@ -57,7 +65,7 @@ public void clckopenaccountbutton() {
 
 public String successmessage() {
     String message = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(sucessmessage)
+            ExpectedConditions.visibilityOf(sucessmessage)
     ).getText().trim();
     System.out.println("================================");
     System.out.println("[INFO] Success Message : " + message);
@@ -67,7 +75,7 @@ public String successmessage() {
 
 public String accountid() {
     String id = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(newaccountid)
+            ExpectedConditions.visibilityOf(newaccountid)
     ).getText().trim();
     System.out.println("[INFO] New Account ID  : " + id);
     return id;

@@ -1,8 +1,12 @@
 Page\Accountpage.class
 Page\RegisterPage.class
+Page\UpdateInfoPage.class
 Page\AccountsOverviewPage$AccountDetail.class
+Page\Transferfundspage.class
 Factory\DriverFactory.class
+Page\FindTransactionspage.class
 Page\LoginPage.class
 Test\RegisterTest.class
 Page\AccountsOverviewPage.class
 Test\BaseTest.class
+Page\BillpayPage.class

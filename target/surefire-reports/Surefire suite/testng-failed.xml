@@ -9,7 +9,11 @@
           <include name="registerTest"/>
           <include name="verifyaccountsList"/>
           <include name="setup"/>
+          <include name="findtransactions"/>
           <include name="openaccount"/>
+          <include name="transferfunds"/>
+          <include name="updateprofile"/>
+          <include name="billpay"/>
         </methods>
       </class> <!-- Test.RegisterTest -->
     </classes>

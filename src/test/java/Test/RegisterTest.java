@@ -5,17 +5,13 @@
 package Test;
 import Page.Accountpage;
 import Page.AccountsOverviewPage;
+import Page.BillpayPage;
+import Page.FindTransactionspage;
 import Page.LoginPage;
 import Page.RegisterPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.WebDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebElement;
+import Page.Transferfundspage;
+import Page.UpdateInfoPage;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 /**
  *
@@ -27,7 +23,11 @@ public class RegisterTest extends BaseTest{
     LoginPage loginpage;
     Accountpage accpage;
     AccountsOverviewPage accoverview;
-
+    Transferfundspage transferpage;
+    BillpayPage        billpaypage;
+    FindTransactionspage findpage;
+    UpdateInfoPage  updatedetails;
+    
     @Test(priority=1)
     void registerTest(){
     regpage=new RegisterPage(driver);
@@ -40,7 +40,7 @@ public class RegisterTest extends BaseTest{
     regpage.enterrzipcode(671532);
     regpage.enterphone(1234234567);
     regpage.enterssn(234567654);
-    regpage.enterusername("example95");
+    regpage.enterusername("example63");
     regpage.eneterpassword("password");
     regpage.confirmpassword("password");
     regpage.clickregisterbutton();  
@@ -86,7 +86,82 @@ public class RegisterTest extends BaseTest{
      accoverview.waitForPageLoad();
      accoverview.displayAllAccounts();
      }
+     
+     @Test(priority=4)
+     void transferfunds(){
+         transferpage=new Transferfundspage(driver);
+          
+     transferpage.clicktransferfundspage();
+     transferpage.waitForPageLoad();
+     transferpage.enteramount("10");
+     transferpage.clicktransferbutton();
+     String resultmsg=transferpage.resultmessage();
+     System.out.println(resultmsg);
+     Assert.assertTrue(resultmsg.contains("Transfer"));
+     System.out.println("transfer funds functionality working properly");
+     }
     
+     
+     @Test(priority=5)
+     void billpay(){
+     billpaypage=new BillpayPage(driver);
+     billpaypage.clickbillpaybutton();
+     billpaypage.waitForPageLoad();
+     billpaypage.enterdetails("shiva", "example po house po address", "example city", "examplestate", "012345", "999999999", "12345", "12345", "10");
+     billpaypage.slectfromaccount();
+     billpaypage.clicksendpayment();
+     String status=billpaypage.billpaystatus();
+     Assert.assertTrue(status.contains("Bill Payment Complete"));
+     }
 
-        
+     
+     @Test(priority=6)
+     void findtransactions(){
+    findpage = new FindTransactionspage(driver);
+    
+    // Step 1: Click Find Transactions link
+    findpage.clickFindTransactions();
+    
+    // Step 2: Select first account
+    findpage.selectAccount(0);
+    
+    // Step 3: Find by Transaction ID
+    //findpage.findByTransactionId("13455");
+    //findpage.displayTransactionResults();
+    //System.out.println("Total transactions found: " + findpage.getTransactionCount());
+    
+    // Step 4: Find by Date
+    findpage.selectAccount(0);
+    findpage.findByDate("01-01-2024");
+    findpage.displayTransactionResults();
+    findpage.refreshPage();
+    // Step 5: Find by Date Range
+    findpage.selectAccount(0);
+    findpage.findByDateRange("01-01-2024", "12-31-2024");
+    findpage.displayTransactionResults();
+    findpage.refreshPage();
+    // Step 6: Find by Amount
+    findpage.selectAccount(0);
+    findpage.findByAmount("10");
+    findpage.displayTransactionResults();
+    findpage.refreshPage();
+    
+    // Step 7: Assert results
+    Assert.assertFalse(findpage.isErrorDisplayed(),
+    "Error should not be displayed");
+    System.out.println("Find Transactions working properly");
 }
+     @Test(priority=7)
+     void updateprofile(){
+     updatedetails=new UpdateInfoPage(driver);
+     updatedetails.clickupdateinfo();
+     updatedetails.updatedetails("kush", "mera", "example mahesh", "example state", "445676", "1234567856");
+     updatedetails.clickupdatebutton();
+     String resultmsg=updatedetails.resultmessage();
+     Assert.assertTrue(resultmsg.contains("Your updated address and phone number have been added to the system."));
+     System.out.println("update contact info field working properly");
+     
+     }
+
+}
+
