@@ -22,6 +22,7 @@ public class BaseTest{
     @BeforeClass
     public void setup() {
         driver = DriverFactory.getDriver();
+        
     }
 
     @AfterClass

@@ -48,7 +48,12 @@ public class UpdateInfoPage {
     WebElement updatebutton;
     
     @FindBy(xpath="//h1[normalize-space()='Profile Updated']")
-    WebElement resultmessage;
+    WebElement heading;
+
+    @FindBy(xpath="//p[contains(text(),'Your updated address')]")
+    WebElement successMessage;
+    
+   
     
    public  UpdateInfoPage(WebDriver driver){
        this.driver=driver;
@@ -61,10 +66,11 @@ public class UpdateInfoPage {
    wait.until(ExpectedConditions.visibilityOf(firstname));
    }
    
-   public void updatedetails(String firstname,String lastname,String address,String state,String zipcode,String phone){
+   public void updatedetails(String firstname,String lastname,String address,String city,String state,String zipcode,String phone){
    this.firstname.sendKeys(firstname);
    this.lastname.sendKeys(lastname);
    this.address.sendKeys(address);
+   this.city.sendKeys(city);
    this.state.sendKeys(state);
    this.zipcode.sendKeys(zipcode);
    this.phone.sendKeys(phone);
@@ -72,12 +78,12 @@ public class UpdateInfoPage {
     
     public void clickupdatebutton(){
     updatebutton.click();
-    wait.until(ExpectedConditions.visibilityOf(resultmessage));
+    wait.until(ExpectedConditions.visibilityOf(successMessage));
     
 
     
 }
     public String resultmessage(){
-    return resultmessage.getText();
+    return successMessage.getText();
     }
 }

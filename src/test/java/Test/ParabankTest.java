@@ -8,16 +8,18 @@ import Page.AccountsOverviewPage;
 import Page.BillpayPage;
 import Page.FindTransactionspage;
 import Page.LoginPage;
+import Page.LogoutPage;
 import Page.RegisterPage;
 import Page.Transferfundspage;
 import Page.UpdateInfoPage;
+import Page.requestLoanPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 /**
  *
  * @author HP
  */
-public class RegisterTest extends BaseTest{
+public class ParabankTest extends BaseTest{
 
     RegisterPage regpage;
     LoginPage loginpage;
@@ -27,10 +29,14 @@ public class RegisterTest extends BaseTest{
     BillpayPage        billpaypage;
     FindTransactionspage findpage;
     UpdateInfoPage  updatedetails;
+    LogoutPage    logout;
+    requestLoanPage requestloan;
     
     @Test(priority=1)
     void registerTest(){
+    //driver.manage().deleteAllCookies();
     regpage=new RegisterPage(driver);
+    String username = "user_" + System.currentTimeMillis();
     regpage.clickregisterbuttonhome();
     regpage.enterfirstname("example2");
     regpage.enterlastname("A");
@@ -40,7 +46,7 @@ public class RegisterTest extends BaseTest{
     regpage.enterrzipcode(671532);
     regpage.enterphone(1234234567);
     regpage.enterssn(234567654);
-    regpage.enterusername("example63");
+    regpage.enterusername(username);
     regpage.eneterpassword("password");
     regpage.confirmpassword("password");
     regpage.clickregisterbutton();  
@@ -48,7 +54,7 @@ public class RegisterTest extends BaseTest{
         try {
             Thread.sleep(4000);
         } catch (InterruptedException ex) {
-            System.getLogger(RegisterTest.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.getLogger(ParabankTest.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     Assert.assertTrue(successmessage.contains("Your account was created successfully. You are now logged in"));
     System.out.println("registration test passed successfully");
@@ -155,13 +161,35 @@ public class RegisterTest extends BaseTest{
      void updateprofile(){
      updatedetails=new UpdateInfoPage(driver);
      updatedetails.clickupdateinfo();
-     updatedetails.updatedetails("kush", "mera", "example mahesh", "example state", "445676", "1234567856");
+     updatedetails.updatedetails("kush", "mera", "example mahesh","example city", "example state", "445676", "1234567856");
      updatedetails.clickupdatebutton();
      String resultmsg=updatedetails.resultmessage();
      Assert.assertTrue(resultmsg.contains("Your updated address and phone number have been added to the system."));
      System.out.println("update contact info field working properly");
      
      }
-
+     
+     @Test(priority=9)
+     void logouttest(){
+     logout=new LogoutPage(driver);
+     logout.clickLogout();
+     boolean result=logout.isLogoutSuccessful();
+     Assert.assertEquals(result, true);
+     System.out.println("logout test passed sucessfully");
+     }
+     
+     
+     @Test(priority=8)
+     void requestloan(){
+     requestloan=new requestLoanPage(driver);
+     requestloan.clickrequestloan();
+     requestloan.enteramount("10");
+     requestloan.enterdownpayment("5");
+     requestloan.clickapplynow();
+     String result=requestloan.getsuccessmessage();
+     System.out.println("result is "+result);
+     Assert.assertTrue(result.contains("Congratulations, your loan has been approved."));
+     System.out.println("request loan module working properly");
+     }
 }
 

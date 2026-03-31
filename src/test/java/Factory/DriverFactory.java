@@ -30,7 +30,9 @@ public class DriverFactory {
 
             driver = new ChromeDriver();
                             driver.get("https://parabank.parasoft.com/parabank/register.htm");
+                           // driver.manage().deleteAllCookies();
     driver.manage().window().maximize();
+    
         }
         return driver;
     }
