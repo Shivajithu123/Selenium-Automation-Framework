@@ -1,8 +1,8 @@
 Page\UpdateInfoPage.class
 Page\AccountsOverviewPage$AccountDetail.class
 Page\Transferfundspage.class
+Test\ParabankTest.class
 Page\LoginPage.class
-Test\RegisterTest.class
 Page\Accountpage.class
 Page\RegisterPage.class
 Page\requestLoanPage.class

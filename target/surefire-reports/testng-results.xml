@@ -1,57 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
+<testng-results ignored="0" total="9" passed="8" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-31T10:27:03 IST" name="Surefire suite" finished-at="2026-03-31T10:27:42 IST" duration-ms="39392">
+  <suite started-at="2026-05-22T09:52:08 IST" name="Surefire suite" finished-at="2026-05-22T09:53:15 IST" duration-ms="67132">
     <groups>
     </groups>
-    <test started-at="2026-03-31T10:27:03 IST" name="Surefire test" finished-at="2026-03-31T10:27:42 IST" duration-ms="39392">
-      <class name="Test.RegisterTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:03 IST" name="setup" finished-at="2026-03-31T10:27:06 IST" duration-ms="3386" status="PASS">
+    <test started-at="2026-05-22T09:52:08 IST" name="Surefire test" finished-at="2026-05-22T09:53:15 IST" duration-ms="67132">
+      <class name="Test.ParabankTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:52:08 IST" name="setup" finished-at="2026-05-22T09:52:15 IST" duration-ms="7146" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="registerTest()[pri:1, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:06 IST" name="registerTest" finished-at="2026-03-31T10:27:12 IST" duration-ms="5561" status="PASS">
+        <test-method signature="registerTest()[pri:1, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:52:15 IST" name="registerTest" finished-at="2026-05-22T09:52:24 IST" duration-ms="8700" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- registerTest -->
-        <test-method signature="openaccount()[pri:2, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:12 IST" name="openaccount" finished-at="2026-03-31T10:27:14 IST" duration-ms="1882" status="PASS">
+        <test-method signature="openaccount()[pri:2, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:52:24 IST" name="openaccount" finished-at="2026-05-22T09:52:26 IST" duration-ms="2187" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openaccount -->
-        <test-method signature="verifyaccountsList()[pri:3, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:14 IST" name="verifyaccountsList" finished-at="2026-03-31T10:27:30 IST" depends-on-methods="Test.RegisterTest.registerTest" duration-ms="16266" status="PASS">
+        <test-method signature="verifyaccountsList()[pri:3, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:52:26 IST" name="verifyaccountsList" finished-at="2026-05-22T09:52:43 IST" depends-on-methods="Test.ParabankTest.registerTest" duration-ms="16463" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyaccountsList -->
-        <test-method signature="transferfunds()[pri:4, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:30 IST" name="transferfunds" finished-at="2026-03-31T10:27:32 IST" duration-ms="1666" status="PASS">
+        <test-method signature="transferfunds()[pri:4, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:52:43 IST" name="transferfunds" finished-at="2026-05-22T09:52:45 IST" duration-ms="1975" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- transferfunds -->
-        <test-method signature="billpay()[pri:5, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:32 IST" name="billpay" finished-at="2026-03-31T10:27:34 IST" duration-ms="2055" status="PASS">
+        <test-method signature="billpay()[pri:5, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:52:45 IST" name="billpay" finished-at="2026-05-22T09:52:48 IST" duration-ms="2654" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- billpay -->
-        <test-method signature="findtransactions()[pri:6, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:34 IST" name="findtransactions" finished-at="2026-03-31T10:27:39 IST" duration-ms="5039" status="PASS">
+        <test-method signature="findtransactions()[pri:6, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:52:48 IST" name="findtransactions" finished-at="2026-05-22T09:52:55 IST" duration-ms="7079" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- findtransactions -->
-        <test-method signature="updateprofile()[pri:7, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:39 IST" name="updateprofile" finished-at="2026-03-31T10:27:40 IST" duration-ms="1460" status="PASS">
+        <test-method signature="updateprofile()[pri:7, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:52:55 IST" name="updateprofile" finished-at="2026-05-22T09:53:11 IST" duration-ms="16659" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on windows (d25377be7d7f3fd48101d2cdca0f8b7e)] -> xpath: //p[contains(text(),'Your updated address')]] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 148.0.7778.178, chrome: {chromedriverVersion: 148.0.7778.178 (d096af1c9e9..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:2414}, goog:processID: 2500, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:2414/devtool..., se:cdpVersion: 148.0.7778.178, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d25377be7d7f3fd48101d2cdca0f8b7e]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on windows (d25377be7d7f3fd48101d2cdca0f8b7e)] -> xpath: //p[contains(text(),'Your updated address')]] (tried for 15 second(s) with 500 milliseconds interval)
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 148.0.7778.178, chrome: {chromedriverVersion: 148.0.7778.178 (d096af1c9e9..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:2414}, goog:processID: 2500, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:2414/devtool..., se:cdpVersion: 148.0.7778.178, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d25377be7d7f3fd48101d2cdca0f8b7e
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at Page.UpdateInfoPage.clickupdatebutton(UpdateInfoPage.java:81)
+at Test.ParabankTest.updateprofile(ParabankTest.java:165)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:155)
+at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:169)
+at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:88)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:137)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- updateprofile -->
-        <test-method signature="requestloan()[pri:8, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:40 IST" name="requestloan" finished-at="2026-03-31T10:27:41 IST" duration-ms="1146" status="PASS">
+        <test-method signature="requestloan()[pri:8, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:53:11 IST" name="requestloan" finished-at="2026-05-22T09:53:13 IST" duration-ms="1245" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- requestloan -->
-        <test-method signature="logouttest()[pri:9, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:41 IST" name="logouttest" finished-at="2026-03-31T10:27:42 IST" duration-ms="688" status="PASS">
+        <test-method signature="logouttest()[pri:9, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:53:13 IST" name="logouttest" finished-at="2026-05-22T09:53:15 IST" duration-ms="2410" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- logouttest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:Test.RegisterTest@1a0dcaa]" started-at="2026-03-31T10:27:42 IST" name="tearDown" finished-at="2026-03-31T10:27:42 IST" duration-ms="212" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:Test.ParabankTest@7fedfe27]" started-at="2026-05-22T09:53:15 IST" name="tearDown" finished-at="2026-05-22T09:53:15 IST" duration-ms="283" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- Test.RegisterTest -->
+      </class> <!-- Test.ParabankTest -->
     </test> <!-- Surefire test -->
   </suite> <!-- Surefire suite -->
 </testng-results>

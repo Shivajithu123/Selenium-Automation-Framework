@@ -3,13 +3,13 @@
 <suite name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="5" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="Test.RegisterTest">
+      <class name="Test.ParabankTest">
         <methods>
+          <include name="updateprofile"/>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="requestloan"/>
         </methods>
-      </class> <!-- Test.RegisterTest -->
+      </class> <!-- Test.ParabankTest -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->
