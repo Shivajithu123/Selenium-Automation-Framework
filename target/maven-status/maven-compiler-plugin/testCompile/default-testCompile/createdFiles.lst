@@ -2,6 +2,7 @@ Page\UpdateInfoPage.class
 Page\AccountsOverviewPage$AccountDetail.class
 Page\Transferfundspage.class
 Test\ParabankTest.class
+Test\TestLog.class
 Page\LoginPage.class
 Page\Accountpage.class
 Page\RegisterPage.class

@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany</groupId>
     <artifactId>Parabank</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-   
-		<aspectj.version>1.9.7</aspectj.version> 
-		<allure.version>2.24.0</allure.version>
-        <maven.compiler.release>21</maven.compiler.release>
-        <exec.mainClass>com.mycompany.parabank.Parabank</exec.mainClass>
- 
+
+    <!-- ✅ These must be OUTSIDE <properties> -->
     <name>ParaBank Automation Framework</name>
     <description>Selenium WebDriver + TestNG + Maven Automation Framework for ParaBank</description>
 
-    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- ✅ Use only one compiler version - removed duplicate release>21 -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <exec.mainClass>com.mycompany.parabank.Parabank</exec.mainClass>
+
+        <!-- Dependency Versions -->
         <selenium.version>4.18.1</selenium.version>
         <testng.version>7.9.0</testng.version>
         <extentreports.version>5.1.1</extentreports.version>
-        <log4j.version>2.22.1</log4j.version>
+        <log4j.version>2.23.1</log4j.version>  <!-- ✅ Single consistent version -->
         <webdrivermanager.version>5.7.0</webdrivermanager.version>
         <datafaker.version>2.1.0</datafaker.version>
         <commons-io.version>2.15.1</commons-io.version>
         <maven-surefire.version>3.2.5</maven-surefire.version>
+        <aspectj.version>1.9.7</aspectj.version>
+        <allure.version>2.24.0</allure.version>
     </properties>
 
     <dependencies>
+
         <!-- Selenium WebDriver -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -38,7 +45,7 @@
             <version>${selenium.version}</version>
         </dependency>
 
-        <!-- WebDriverManager - Auto driver management -->
+        <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
@@ -59,7 +66,7 @@
             <version>${extentreports.version}</version>
         </dependency>
 
-        <!-- Log4j2 -->
+        <!-- ✅ Log4j2 - all using the same property version -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -70,35 +77,53 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+        <!-- SLF4J bridge - routes Selenium/WDM logs through Log4j2 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
 
-        <!-- DataFaker - Test data generation -->
+        <!-- Allure TestNG -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <!-- AspectJ (required by Allure) -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- DataFaker -->
         <dependency>
             <groupId>net.datafaker</groupId>
             <artifactId>datafaker</artifactId>
             <version>${datafaker.version}</version>
         </dependency>
 
-        <!-- Commons IO - File utilities -->
+        <!-- Commons IO -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
-                    <dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-testng</artifactId>
-			<version>${allure.version}</version>
-		</dependency>
-            <!-- Maven Compiler Plugin -->
-            		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>${aspectj.version}</version>
-			<scope>runtime</scope>
-		</dependency>
+
+        <!-- ✅ REMOVED nl.elements.mobilization:logging-api 
+             It conflicts with log4j-slf4j2-impl -->
+
     </dependencies>
 
     <build>
+            <testResources>
+        <testResource>
+            <directory>src/test/resources</directory>
+        </testResource>
+    </testResources>
         <plugins>
             <!-- Maven Surefire Plugin -->
             <plugin>
@@ -106,14 +131,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
                 <configuration>
-                    
-					<testFailureIgnore>true</testFailureIgnore>
-					<argLine>
-						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-					</argLine>
-                    <!--<suiteXmlFiles>
-                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-                    </suiteXmlFiles> -->
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                     <systemPropertyVariables>
                         <browser>${browser}</browser>
                         <env>${env}</env>
@@ -122,6 +143,7 @@
                 </configuration>
             </plugin>
 
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -133,4 +155,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

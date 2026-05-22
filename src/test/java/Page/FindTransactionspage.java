@@ -12,6 +12,8 @@ import java.time.Duration;
 import java.util.List;
 import static org.apache.commons.lang3.ObjectUtils.wait;
 import org.openqa.selenium.By;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -23,7 +25,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FindTransactionspage {
     
-    
+   
     
     WebDriver driver;
     WebDriverWait wait; 
@@ -89,14 +91,17 @@ WebElement formContainer;
 
 @FindBy(id = "resultContainer")
 WebElement resultContainer;
-    
+    private static final Logger logger =
+        LogManager.getLogger(FindTransactionspage.class);
     public FindTransactionspage(WebDriver driver){
         this.driver=driver;
         this.wait   = new WebDriverWait(this.driver, Duration.ofSeconds(15));
         PageFactory.initElements(this.driver, this);
+        logger.info("FindTransactionsPage initialized");
     }
     
     public void clickFindTransactions() {
+         logger.info("Opening Find Transactions page");
         wait.until(ExpectedConditions.elementToBeClickable(findTransactionsLink)).click();
         System.out.println("[INFO] Clicked Find Transactions link");
         waitForPageLoad();
@@ -153,6 +158,7 @@ WebElement resultContainer;
      * Finds transaction by Transaction ID.
      */
     public void findByTransactionId(String transId) {
+        logger.info("Searching transaction with ID: {}", transId);
         wait.until(ExpectedConditions.visibilityOf(transactionIdField));
         transactionIdField.clear();
         transactionIdField.sendKeys(transId);
@@ -233,6 +239,7 @@ WebElement resultContainer;
      * Waits for transaction results to appear after search.
      */
     public void waitForResults() {
+        logger.info("Clicking Find Transactions button");
         wait.until(ExpectedConditions.visibilityOf(transactionTable));
         System.out.println("[INFO] Transaction results loaded");
     }
@@ -312,6 +319,7 @@ WebElement resultContainer;
         System.out.println("-".repeat(80));
         System.out.printf("  Total Transactions : %d%n", transactionRows.size());
         System.out.println("=".repeat(80) + "\n");
+        logger.info("Transaction search completed");
     }
 }
    
